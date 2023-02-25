@@ -23,11 +23,16 @@ void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e
 
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == storyEvent) {
-            cout << left << setw(20) << e.at(i).getEventName() << " " << e.at(i).getStoneCount() << endl;
+            cout << left << setw(20) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
             totalStones += e.at(i).getStoneCount();
         }
     }
-    cout << "---------------------------" << endl;
+    for (int i = 0; i < e.size(); ++i) {
+        if (e.at(i).getEventType() == storyEvent) {
+            cout << "---------------------------" << endl;
+            break;
+        }
+    }
 
     cout << left << setw(20) << "Total Stones" << totalStones << endl;
 }

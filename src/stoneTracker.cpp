@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <limits>
 #include "../header/table.h"
 
 using namespace std;
@@ -8,21 +9,61 @@ int main() {
     int currentStones, totalStones, days;
     cout << "Enter the number of dragon stones you currently have: ";
     cin >> currentStones;
+    bool b = true;
+    while(b) {
+        if(cin.good()) b = false;
+        else {
+            cin.clear();
+            cout << "Invalid input" << endl;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout << "Enter the number of dragon stones you currently have: ";
+            cin >> currentStones;
+        }
+    }
+
     cout << "Enter the number of days you want to save: ";
-    cin >> days;    
-    Weekend w = Weekend(days);
-    totalStones += currentStones + 2*days + w.getWeekendStones() + w.stonesFromExtraDays();
+    cin >> days;
+    b = true;
+    while(b) {
+        if(cin.good()) b = false;
+        else {
+            cin.clear();
+            cout << "Invalid input" << endl;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout << "Enter the number of days you want to save: ";
+            cin >> days;
+        }
+    }
 
     int choice = 1;
+    Weekend w = Weekend(days);
     vector<Events> eventList;
     while (choice != 0) {
         cout << endl;
         cout << "(1) Add an event" << endl;
         cout << "(2) Output total amount of stones" << endl;
         cout << "(3) Update current stone count" << endl;
-        cout << "(4) Exit the program" << endl;
+        cout << "(4) Update days of saving" << endl;
+        cout << "(5) Exit the program" << endl;
         cout << "Choose an option: ";
         cin >> choice;
+        b = true;
+        while(b) {
+        if(cin.good()) b = false;
+        else {
+            cin.clear();
+            cout << endl << "Invalid input";
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout << endl;
+            cout << "(1) Add an event" << endl;
+            cout << "(2) Output total amount of stones" << endl;
+            cout << "(3) Update current stone count" << endl;
+            cout << "(4) Update days of saving" << endl;
+            cout << "(5) Exit the program" << endl;
+            cout << "Choose an option: ";
+            cin >> choice;
+        }
+    }
 
         switch (choice) {
             case 1:
@@ -43,7 +84,13 @@ int main() {
             case 3:
                 cout << endl << "Enter new stone count: ";
                 cin >> currentStones;
+                break;
             case 4:
+                cout << endl << "Enter number of days you will save: ";
+                cin >> days;
+                w = Weekend(days);
+                break;
+            case 5:
                 choice = 0;
                 break;
             default:

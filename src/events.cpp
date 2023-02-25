@@ -1,5 +1,6 @@
 #include "../header/events.h"
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -33,12 +34,53 @@ void Events::addEvent() {
     cout << "(8) Other" << endl;
     cout << "Choose an option: ";
     cin >> input;
+    bool b = true;
+    while(b) {
+        if(cin.good()) b = false;
+        else {
+            cin.clear();
+            cout << endl << "Invalid input";
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout << endl << "(1) Add Story Event" << endl;
+            cout << "(2) Add Dragon Ball Story" << endl;
+            cout << "(3) Add Super Strike Event" << endl;
+            cout << "(4) Add Dokkan Event" << endl;
+            cout << "(5) Add Virtual Dokkan Ultimate Clash" << endl;
+            cout << "(6) Add Prime Battle Event" << endl;
+            cout << "(7) Add Extreme Z-Battle" << endl;
+            cout << "(8) Other" << endl;
+            cout << "Choose an option: ";
+            cin >> input;
+        }
+    }
 
     string x;
     cout << endl << "Enter the number of stones from the event: ";
     cin >> stoneCount;
+    b = true;
+    while(b) {
+        if(cin.good()) b = false;
+        else {
+            cin.clear();
+            cout << "Invalid input" << endl;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout << endl << "Enter the number of stones from the event: ";
+            cin >> stoneCount;
+        }
+    }
     cout << "Enter the event name: ";
     cin >> x;
+    b = true;
+    while(b) {
+        if(cin.good()) b = false;
+        else {
+            cin.clear();
+            cout << "Invalid input" << endl;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout << "Enter the event name: ";
+            cin >> x;
+        }
+    }
     getline(cin, eventName);
     eventName = x + eventName;
     
