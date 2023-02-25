@@ -27,7 +27,7 @@ int Weekend::stonesFromExtraDays() {
             break;
         case 2:
             if (extraDays == 5) {
-
+                ++extraStones;
             }
             else if (extraDays == 6) {
                 extraStones += 2;
@@ -61,15 +61,15 @@ int Weekend::stonesFromExtraDays() {
             if (extraDays == 1) {
                 ++extraStones;
             }
-            else if (extraDays == 2) {
+            else if (extraDays > 1) {
                 extraStones += 2;
             }
             break;
         case 7:
-            if (extraDays == 1) {
+            if (extraDays > 0) {
                 ++extraStones;
             }
             break;
     }
-    return extraDays*2 + extraStones;
+    return extraStones;
 }
