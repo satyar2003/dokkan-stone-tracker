@@ -3,7 +3,7 @@
 
 #include <string>
 
-enum eventType { invalid, storyEvent, dbStory, strikeEvent, dokkanEvent, ultimateClash, primeBattle, EZA };
+enum eventType { invalid, storyEvent, dbStory, strikeEvent, dokkanEvent, ultimateClash, primeBattle, EZA, other };
 
 class Events {
     private:

@@ -19,7 +19,8 @@ int main() {
         cout << endl;
         cout << "(1) Add an event" << endl;
         cout << "(2) Output total amount of stones" << endl;
-        cout << "(3) Exit the program" << endl;
+        cout << "(3) Update current stone count" << endl;
+        cout << "(4) Exit the program" << endl;
         cout << "Choose an option: ";
         cin >> choice;
 
@@ -40,6 +41,9 @@ int main() {
                     break;
                 }
             case 3:
+                cout << endl << "Enter new stone count: ";
+                cin >> currentStones;
+            case 4:
                 choice = 0;
                 break;
             default:

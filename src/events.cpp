@@ -30,6 +30,7 @@ void Events::addEvent() {
     cout << "(5) Add Virtual Dokkan Ultimate Clash" << endl;
     cout << "(6) Add Prime Battle Event" << endl;
     cout << "(7) Add Extreme Z-Battle" << endl;
+    cout << "(8) Other" << endl;
     cout << "Choose an option: ";
     cin >> input;
 
@@ -62,6 +63,9 @@ void Events::addEvent() {
             break;
         case 7:
             type = EZA;
+            break;
+        case 8:
+            type = other;
             break;
         default:
             type = invalid;
