@@ -1,19 +1,20 @@
 #include <iostream>
 #include <string>
-#include <time.h>
+#include "../header/weekend.h"
 
 using namespace std;
 
 int main() {
-    int stones, days;
+    int totalStones, days;
     cout << "Enter the number of dragon stones you currently have: ";
-    cin >> stones;
+    cin >> totalStones;
     cout << "Enter the number of days you want to save: ";
     cin >> days;
 
-    stones += 2*days;
-
-    cout << "You will have " << stones << " stones by that time." << endl;
+    Weekend w = Weekend(days);
+    totalStones += 2*days + w.getWeekendStones() + w.stonesFromExtraDays();
+    
+    cout << "You will have " << totalStones << " stones by that time." << endl;
 
     return 0;
 }
