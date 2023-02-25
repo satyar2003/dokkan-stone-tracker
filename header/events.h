@@ -3,16 +3,17 @@
 
 #include <string>
 
-enum eventType { storyEvent };
+enum eventType { invalid, storyEvent, dbStory, strikeEvent, dokkanEvent, ultimateClash, primeBattle, EZA };
 
 class Events {
     private:
         std::string eventName;
         int stoneCount;
-        eventType eventType;
+        eventType type;
     public:
-        Events(std::string, int);
+        Events();
         ~Events();
+        eventType getEventType();
         void addEvent();
 };
 

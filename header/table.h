@@ -2,6 +2,7 @@
 #define TABLE_H
 
 #include "weekend.h"
+#include "events.h"
 
 class Table {
     public:
