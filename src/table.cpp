@@ -11,119 +11,119 @@ Table::~Table() {}
 void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e) {
     int totalStones = 0;
     
-    cout << left << setw(20) << "Current Stones" << currentStones << endl;
-    cout << left << setw(20) << "Weekend Stones" << w.getWeekendStones() + w.stonesFromExtraDays() << endl;
+    cout << left << setw(40) << "Current Stones" << currentStones << endl;
+    cout << left << setw(40) << "Weekend Stones" << w.getWeekendStones() + w.stonesFromExtraDays() << endl;
     totalStones += currentStones + w.getWeekendStones() + w.stonesFromExtraDays();
-    cout << "---------------------------" << endl;
+    cout << "------------------------------------------------------" << endl;
 
-    cout << left << setw(20) << "Login Bonus" << days << endl;
-    cout << left << setw(20) << "Special Missions" << days << endl;
+    cout << left << setw(40) << "Login Bonus" << days << endl;
+    cout << left << setw(40) << "Special Missions" << days << endl;
     totalStones += days*2;
-    cout << "---------------------------" << endl;
+    cout << "------------------------------------------------------" << endl;
 
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == storyEvent) {
-            cout << left << setw(20) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
+            cout << left << setw(40) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
             totalStones += e.at(i).getStoneCount();
         }
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == storyEvent) {
-            cout << "---------------------------" << endl;
+            cout << "------------------------------------------------------" << endl;
             break;
         }
     }
 
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == dbStory) {
-            cout << left << setw(20) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
+            cout << left << setw(40) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
             totalStones += e.at(i).getStoneCount();
         }
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == dbStory) {
-            cout << "---------------------------" << endl;
+            cout << "------------------------------------------------------" << endl;
             break;
         }
     }
 
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == strikeEvent) {
-            cout << left << setw(20) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
+            cout << left << setw(40) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
             totalStones += e.at(i).getStoneCount();
         }
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == strikeEvent) {
-            cout << "---------------------------" << endl;
+            cout << "------------------------------------------------------" << endl;
             break;
         }
     }
 
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == dokkanEvent) {
-            cout << left << setw(20) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
+            cout << left << setw(40) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
             totalStones += e.at(i).getStoneCount();
         }
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == dokkanEvent) {
-            cout << "---------------------------" << endl;
+            cout << "------------------------------------------------------" << endl;
             break;
         }
     }
 
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == ultimateClash) {
-            cout << left << setw(20) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
+            cout << left << setw(40) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
             totalStones += e.at(i).getStoneCount();
         }
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == ultimateClash) {
-            cout << "---------------------------" << endl;
+            cout << "------------------------------------------------------" << endl;
             break;
         }
     }
 
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == primeBattle) {
-            cout << left << setw(20) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
+            cout << left << setw(40) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
             totalStones += e.at(i).getStoneCount();
         }
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == primeBattle) {
-            cout << "---------------------------" << endl;
+            cout << "------------------------------------------------------" << endl;
             break;
         }
     }
 
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == EZA) {
-            cout << left << setw(20) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
+            cout << left << setw(40) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
             totalStones += e.at(i).getStoneCount();
         }
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == EZA) {
-            cout << "---------------------------" << endl;
+            cout << "------------------------------------------------------" << endl;
             break;
         }
     }
 
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == other) {
-            cout << left << setw(20) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
+            cout << left << setw(40) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
             totalStones += e.at(i).getStoneCount();
         }
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == other) {
-            cout << "---------------------------" << endl;
+            cout << "------------------------------------------------------" << endl;
             break;
         }
     }
 
-    cout << left << setw(20) << "Total Stones" << totalStones << endl;
+    cout << left << setw(40) << "Total Stones" << totalStones << endl;
 }
