@@ -65,37 +65,37 @@ int main() {
         }
     }
 
-        switch (choice) {
-            case 1:
-                {
-                    Events e = Events();
-                    if (e.getEventType() != invalid) {
-                        eventList.push_back(e);
-                    }
-                    break;
+    switch (choice) {
+        case 1:
+            {
+                Events e = Events();
+                if (e.getEventType() != invalid) {
+                    eventList.push_back(e);
                 }
-            case 2:
-                {
-                    Table t = Table();
-                    cout << endl;
-                    t.outputTable(currentStones, days, w, eventList);
-                    break;
-                }
-            case 3:
-                cout << endl << "Enter new stone count: ";
-                cin >> currentStones;
                 break;
-            case 4:
-                cout << endl << "Enter number of days you will save: ";
-                cin >> days;
-                w = Weekend(days);
+            }
+        case 2:
+            {
+                Table t = Table();
+                cout << endl;
+                t.outputTable(currentStones, days, w, eventList);
                 break;
-            case 5:
-                choice = 0;
-                break;
-            default:
-                cout << "Invalid option" << endl;
-                break;
+            }
+        case 3:
+            cout << endl << "Enter new stone count: ";
+            cin >> currentStones;
+            break;
+        case 4:
+            cout << endl << "Enter number of days you will save: ";
+            cin >> days;
+            w = Weekend(days);
+            break;
+        case 5:
+            choice = 0;
+            break;
+        default:
+            cout << "Invalid option" << endl;
+            break;
         }
     }
 

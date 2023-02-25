@@ -54,20 +54,67 @@ void Events::addEvent() {
         }
     }
 
-    string x;
-    cout << endl << "Enter the number of stones from the event: ";
-    cin >> stoneCount;
-    b = true;
-    while(b) {
-        if(cin.good()) b = false;
+    if (input == 7) {
+        cout << endl << "(1) TUR EZA" << endl;
+        cout << "(2) LR EZA" << endl;
+        cout << "Choose an option: ";
+        cin >> input;
+        b = true;
+        while(b) {
+        if(cin.good()) {
+            if (input >= 1 && input <=2) b = false;
+        }
         else {
             cin.clear();
-            cout << "Invalid input" << endl;
+            cout << endl << "Invalid input";
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            cout << endl << "Enter the number of stones from the event: ";
-            cin >> stoneCount;
+            cout << endl << "(1) TUR EZA" << endl;
+            cout << "(2) LR EZA" << endl;
+            cout << "Choose an option: ";
+            cin >> input;
+        }
+        if (input == 2) { cout << "34 stones from the event" << endl; stoneCount = 34; }
+        else { cout << "33 stones from the event" << endl; stoneCount = 33; }
+        }
+        input = 7;
+    }
+
+    switch (input) {
+        case 3:
+            stoneCount = 20;
+            cout << "20 stones from the event" << endl;
+            break;
+        case 4:
+            stoneCount = 2;
+            cout << "2 stones from the event" << endl;
+            break;
+        case 5:
+            stoneCount = 31;
+            cout << "31 stones from the event" << endl;
+            break;
+        case 6: 
+            stoneCount = 3;
+            cout << "3 stones from the event" << endl;
+            break;
+    }
+
+    if (input == 1 || input == 2 || input == 8) {
+        cout << endl << "Enter the number of stones from the event: ";
+        cin >> stoneCount;
+        b = true;
+        while(b) {
+            if(cin.good()) b = false;
+            else {
+                cin.clear();
+                cout << "Invalid input" << endl;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                cout << endl << "Enter the number of stones from the event: ";
+                cin >> stoneCount;
+            }
         }
     }
+
+    string x;
     cout << "Enter the event name: ";
     cin >> x;
     b = true;
