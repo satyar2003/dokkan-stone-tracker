@@ -16,6 +16,7 @@ int Weekend::getWeekendStones() {
 }
 
 int Weekend::stonesFromExtraDays() {
+    extraStones = 0;
     time_t t = time(0);
     struct tm *ptr = gmtime(&t);
     switch(ptr->tm_wday) {
