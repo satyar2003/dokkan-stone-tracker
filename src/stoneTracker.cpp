@@ -1,9 +1,12 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <vector>
 #include "../header/table.h"
 
 using namespace std;
+
+void completeEvent(vector<Events> &);
 
 int main() {
     int currentStones, totalStones, days;
@@ -44,7 +47,8 @@ int main() {
         cout << "(2) Output total amount of stones" << endl;
         cout << "(3) Update current stone count" << endl;
         cout << "(4) Update days of saving" << endl;
-        cout << "(5) Exit the program" << endl;
+        cout << "(5) Mark an event as completed" << endl;
+        cout << "(6) Exit the program" << endl;
         cout << "Choose an option: ";
         cin >> choice;
         b = true;
@@ -59,7 +63,8 @@ int main() {
             cout << "(2) Output total amount of stones" << endl;
             cout << "(3) Update current stone count" << endl;
             cout << "(4) Update days of saving" << endl;
-            cout << "(5) Exit the program" << endl;
+            cout << "(5) Mark an event as completed" << endl;
+            cout << "(6) Exit the program" << endl;
             cout << "Choose an option: ";
             cin >> choice;
         }
@@ -91,6 +96,9 @@ int main() {
             w = Weekend(days);
             break;
         case 5:
+            completeEvent(eventList);
+            break;
+        case 6:
             choice = 0;
             break;
         default:
@@ -100,4 +108,30 @@ int main() {
     }
 
     return 0;
+}
+
+void completeEvent(vector<Events> &e) {
+    int option;
+    cout << endl;
+    for (int i = 0; i < e.size(); ++i) {
+        cout << "(" << i + 1 << ") Mark " << e.at(i).getEventName() << " as completed" << endl;
+    }
+    cout << "Choose an option: ";
+    cin >> option;
+    bool b = true;
+    while(b) {
+        if(cin.good()) b = false;
+        else {
+            cin.clear();
+            cout << "Invalid input" << endl;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            for (int i = 0; i < e.size() - 1; ++i) {
+                cout << "(" << i + 1 << ") Mark " << e.at(i).getEventName() << " as completed" << endl;
+            }
+            cout << "(" << e.size() << ") Mark " << e.at(e.size()-1).getEventName() << " as completed";
+            cout << "Choose an option: ";
+            cin >> option;
+        }
+    }
+    e.at(option - 1).setStoneCount(0);
 }

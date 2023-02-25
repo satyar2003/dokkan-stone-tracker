@@ -16,6 +16,7 @@ class Events {
         std::string getEventName();
         int getStoneCount();
         eventType getEventType();
+        void setStoneCount(int);
         void addEvent();
 };
 

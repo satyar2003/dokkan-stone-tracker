@@ -1,7 +1,7 @@
 #ifndef WEEKEND_H
 #define WEEKEND_H
 
-#include <time.h>
+#include <ctime>
 
 class Weekend {
     private:

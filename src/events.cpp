@@ -22,6 +22,10 @@ eventType Events::getEventType() {
     return type;
 }
 
+void Events::setStoneCount(int s) {
+    stoneCount = s;
+}
+
 void Events::addEvent() {
     int input = 0;
     cout << endl << "(1) Add Story Event" << endl;
