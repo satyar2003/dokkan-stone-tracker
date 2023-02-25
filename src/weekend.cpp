@@ -1,5 +1,4 @@
 #include "../header/weekend.h"
-#include <iostream>
 
 using namespace std;
 
@@ -20,11 +19,17 @@ int Weekend::stonesFromExtraDays() {
     time_t t = time(0);
     struct tm *ptr = gmtime(&t);
     switch(ptr->tm_wday) {
+        case 0:
+            if (extraDays > 0) {
+                ++extraStones;
+            }
+            break;
         case 1:
             if (extraDays == 6) {
                 ++extraStones;
             }
             break;
+            
         case 2:
             if (extraDays == 5) {
                 ++extraStones;
@@ -33,6 +38,7 @@ int Weekend::stonesFromExtraDays() {
                 extraStones += 2;
             }
             break;
+            
         case 3:
             if (extraDays == 4) {
                 ++extraStones;
@@ -63,11 +69,6 @@ int Weekend::stonesFromExtraDays() {
             }
             else if (extraDays > 1) {
                 extraStones += 2;
-            }
-            break;
-        case 7:
-            if (extraDays > 0) {
-                ++extraStones;
             }
             break;
     }
