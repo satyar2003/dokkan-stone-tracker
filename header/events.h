@@ -13,6 +13,8 @@ class Events {
     public:
         Events();
         ~Events();
+        std::string getEventName();
+        int getStoneCount();
         eventType getEventType();
         void addEvent();
 };

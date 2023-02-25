@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include "../header/table.h"
 
 using namespace std;
@@ -37,7 +36,7 @@ int main() {
                 {
                     Table t = Table();
                     cout << endl;
-                    t.outputTable(currentStones, days, w);
+                    t.outputTable(currentStones, days, w, eventList);
                     break;
                 }
             case 3:

@@ -9,6 +9,14 @@ Events::Events() {
 
 Events::~Events() {}
 
+string Events::getEventName() {
+    return eventName;
+}
+
+int Events::getStoneCount() {
+    return stoneCount;
+}
+
 eventType Events::getEventType() {
     return type;
 }
@@ -25,14 +33,13 @@ void Events::addEvent() {
     cout << "Choose an option: ";
     cin >> input;
 
-    string name, x;
-    int stones = 0;
+    string x;
     cout << endl << "Enter the number of stones from the event: ";
-    cin >> stones;
+    cin >> stoneCount;
     cout << "Enter the event name: ";
     cin >> x;
-    getline(cin, name);
-    name = x + name;
+    getline(cin, eventName);
+    eventName = x + eventName;
     
     switch(input) {
         case 1:
