@@ -125,7 +125,9 @@ void completeEvent(vector<Events> &e) {
     cin >> option;
     bool b = true;
     while(b) {
-        if(cin.good() && (option >= 1 || option <= e.size())) b = false;
+        if(cin.good()){
+            if (option >= 1 || option <= e.size()) b = false;
+        } 
         else {
             cin.clear();
             cout << "Invalid input" << endl;
