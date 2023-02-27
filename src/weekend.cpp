@@ -20,18 +20,18 @@ int Weekend::stonesFromExtraDays() {
     time_t t = time(0);
     struct tm *ptr = gmtime(&t);
     switch(ptr->tm_wday) {
-        case 0:
+        case 6:
             if (extraDays > 0) {
                 ++extraStones;
             }
             break;
-        case 1:
+        case 0:
             if (extraDays == 6) {
                 ++extraStones;
             }
             break;
             
-        case 2:
+        case 1:
             if (extraDays == 5) {
                 ++extraStones;
             }
@@ -40,7 +40,7 @@ int Weekend::stonesFromExtraDays() {
             }
             break;
             
-        case 3:
+        case 2:
             if (extraDays == 4) {
                 ++extraStones;
             }
@@ -48,7 +48,7 @@ int Weekend::stonesFromExtraDays() {
                 extraStones += 2;
             }
             break;
-        case 4:
+        case 3:
             if (extraDays == 3) {
                 ++extraStones;
             }
@@ -56,7 +56,7 @@ int Weekend::stonesFromExtraDays() {
                 extraStones += 2;
             }
             break;
-        case 5:
+        case 4:
             if (extraDays == 2) {
                 ++extraStones;
             }
@@ -64,7 +64,7 @@ int Weekend::stonesFromExtraDays() {
                 extraStones += 2;
             }
             break;
-        case 6:
+        case 5:
             if (extraDays == 1) {
                 ++extraStones;
             }
