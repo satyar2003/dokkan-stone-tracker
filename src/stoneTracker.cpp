@@ -96,7 +96,12 @@ int main() {
             w = Weekend(days);
             break;
         case 5:
-            completeEvent(eventList);
+            if (eventList.size() > 0) {
+                completeEvent(eventList);
+            }
+            else {
+                cout << "No events to complete" << endl;
+            }
             break;
         case 6:
             choice = 0;
@@ -120,7 +125,7 @@ void completeEvent(vector<Events> &e) {
     cin >> option;
     bool b = true;
     while(b) {
-        if(cin.good()) b = false;
+        if(cin.good() && (option >= 1 || option <= e.size())) b = false;
         else {
             cin.clear();
             cout << "Invalid input" << endl;
