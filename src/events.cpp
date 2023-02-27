@@ -77,7 +77,7 @@ void Events::addEvent() {
             cout << "Choose an option: ";
             cin >> input;
         }
-        if (input == 2) { cout << "34 stones from the event" << endl; stoneCount = 34; }
+        if (input == 1) { cout << "34 stones from the event" << endl; stoneCount = 34; }
         else { cout << "33 stones from the event" << endl; stoneCount = 33; }
         }
         input = 7;
