@@ -127,6 +127,17 @@ void completeEvent(vector<Events> &e) {
     while(b) {
         if(cin.good()){
             if (option >= 1 || option <= e.size()) b = false;
+            else {
+                cin.clear();
+                cout << "Invalid input" << endl;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                for (int i = 0; i < e.size() - 1; ++i) {
+                    cout << "(" << i + 1 << ") Mark " << e.at(i).getEventName() << " as completed" << endl;
+                }
+                cout << "(" << e.size() << ") Mark " << e.at(e.size()-1).getEventName() << " as completed";
+                cout << "Choose an option: ";
+                cin >> option;
+            }
             
         } 
         else {
