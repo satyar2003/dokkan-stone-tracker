@@ -7,6 +7,7 @@
 using namespace std;
 
 void completeEvent(vector<Events> &);
+void removeEvent(vector<Events> &);
 
 int main() {
     int currentStones, totalStones, days;
@@ -48,7 +49,8 @@ int main() {
         cout << "(3) Update current stone count" << endl;
         cout << "(4) Update days of saving" << endl;
         cout << "(5) Mark an event as completed" << endl;
-        cout << "(6) Exit the program" << endl;
+        cout << "(6) Remove an event" << endl;
+        cout << "(7) Exit the program" << endl;
         cout << "Choose an option: ";
         cin >> choice;
         b = true;
@@ -64,7 +66,8 @@ int main() {
             cout << "(3) Update current stone count" << endl;
             cout << "(4) Update days of saving" << endl;
             cout << "(5) Mark an event as completed" << endl;
-            cout << "(6) Exit the program" << endl;
+            cout << "(6) Remove an event" << endl;
+            cout << "(7) Exit the program" << endl;
             cout << "Choose an option: ";
             cin >> choice;
         }
@@ -104,6 +107,14 @@ int main() {
             }
             break;
         case 6:
+            if (eventList.size() > 0) {
+                removeEvent(eventList);
+            }
+            else {
+                cout << "No events to remove" << endl;
+            }
+            break;
+        case 7:
             choice = 0;
             break;
         default:
@@ -131,10 +142,9 @@ void completeEvent(vector<Events> &e) {
                 cin.clear();
                 cout << "Invalid input" << endl;
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
-                for (int i = 0; i < e.size() - 1; ++i) {
+                for (int i = 0; i < e.size(); ++i) {
                     cout << "(" << i + 1 << ") Mark " << e.at(i).getEventName() << " as completed" << endl;
                 }
-                cout << "(" << e.size() << ") Mark " << e.at(e.size()-1).getEventName() << " as completed";
                 cout << "Choose an option: ";
                 cin >> option;
             }
@@ -144,13 +154,50 @@ void completeEvent(vector<Events> &e) {
             cin.clear();
             cout << "Invalid input" << endl;
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            for (int i = 0; i < e.size() - 1; ++i) {
+            for (int i = 0; i < e.size(); ++i) {
                 cout << "(" << i + 1 << ") Mark " << e.at(i).getEventName() << " as completed" << endl;
             }
-            cout << "(" << e.size() << ") Mark " << e.at(e.size()-1).getEventName() << " as completed";
             cout << "Choose an option: ";
             cin >> option;
         }
     }
     e.at(option - 1).setStoneCount(0);
+}
+
+void removeEvent(vector<Events> &e) {
+    int option;
+    cout << endl;
+    for (int i = 0; i < e.size(); ++i) {
+        cout << "(" << i + 1 << ") Remove " << e.at(i).getEventName() << endl;
+    }
+    cout << "Choose an option: ";
+    cin >> option;
+    bool b = true;
+    while(b) {
+        if(cin.good()){
+            if (option >= 1 || option <= e.size()) b = false;
+            else {
+                cin.clear();
+                cout << "Invalid input" << endl;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                for (int i = 0; i < e.size(); ++i) {
+                    cout << "(" << i + 1 << ") Remove " << e.at(i).getEventName() << endl;
+                }
+                cout << "Choose an option: ";
+                cin >> option;
+            }
+            
+        } 
+        else {
+            cin.clear();
+            cout << "Invalid input" << endl;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            for (int i = 0; i < e.size(); ++i) {
+                cout << "(" << i + 1 << ") Remove " << e.at(i).getEventName() << endl;
+            }
+            cout << "Choose an option: ";
+            cin >> option;
+        }
+    }
+    e.erase(e.begin()+option-1);
 }
