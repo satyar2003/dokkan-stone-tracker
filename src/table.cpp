@@ -8,24 +8,29 @@ Table::Table() {}
 
 Table::~Table() {}
 
+// Prints dividing lines 10 characters longer than inputted int
+void printDivider(int);
+
+// Prints table with total stones divided by category
 void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e) {
     int totalStones = 0;
     int columnWidth = 30;
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventName().size() + 1 > columnWidth) {
-            columnWidth = e.at(i).getEventName().size() + 1;
+            columnWidth = e.at(i).getEventName().size() + 5;
         }
     }
     
     cout << left << setw(columnWidth) << "Current Stones" << currentStones << endl;
     cout << left << setw(columnWidth) << "Weekend Stones" << w.getWeekendStones() + w.stonesFromExtraDays() << endl;
     totalStones += currentStones + w.getWeekendStones() + w.stonesFromExtraDays();
-    cout << "------------------------------------------------------" << endl;
+    printDivider(columnWidth);
+    cout << endl;
 
     cout << left << setw(columnWidth) << "Login Bonus" << days << endl;
     cout << left << setw(columnWidth) << "Special Missions" << days << endl;
     totalStones += days*2;
-    cout << "------------------------------------------------------" << endl;
+    printDivider(columnWidth);
 
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == storyEvent) {
@@ -35,7 +40,7 @@ void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == storyEvent) {
-            cout << "------------------------------------------------------" << endl;
+            printDivider(columnWidth);
             break;
         }
     }
@@ -48,7 +53,7 @@ void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == dbStory) {
-            cout << "------------------------------------------------------" << endl;
+            printDivider(columnWidth);
             break;
         }
     }
@@ -61,7 +66,7 @@ void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == strikeEvent) {
-            cout << "------------------------------------------------------" << endl;
+            printDivider(columnWidth);
             break;
         }
     }
@@ -74,7 +79,7 @@ void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == dokkanEvent) {
-            cout << "------------------------------------------------------" << endl;
+            printDivider(columnWidth);
             break;
         }
     }
@@ -87,7 +92,7 @@ void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == ultimateClash) {
-            cout << "------------------------------------------------------" << endl;
+            printDivider(columnWidth);
             break;
         }
     }
@@ -100,7 +105,7 @@ void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == primeBattle) {
-            cout << "------------------------------------------------------" << endl;
+            printDivider(columnWidth);
             break;
         }
     }
@@ -113,7 +118,7 @@ void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == EZA) {
-            cout << "------------------------------------------------------" << endl;
+            printDivider(columnWidth);
             break;
         }
     }
@@ -126,10 +131,17 @@ void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e
     }
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventType() == other) {
-            cout << "------------------------------------------------------" << endl;
+            printDivider(columnWidth);
             break;
         }
     }
 
     cout << left << setw(columnWidth) << "Total Stones" << totalStones << endl;
+}
+
+void printDivider(int x) {
+    for (int i = 0; i < x + 10; ++i) {
+        cout << "-";
+    }
+    cout << endl;
 }
