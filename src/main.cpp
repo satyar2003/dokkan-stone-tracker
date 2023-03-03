@@ -50,7 +50,8 @@ int main() {
         cout << "(4) Update days of saving" << endl;
         cout << "(5) Mark an event as completed" << endl;
         cout << "(6) Remove an event" << endl;
-        cout << "(7) Exit the program" << endl;
+        cout << "(7) Generate text file with total stones" << endl;
+        cout << "(8) Exit the program" << endl;
         cout << "Choose an option: ";
         cin >> choice;
         b = true;
@@ -67,7 +68,8 @@ int main() {
             cout << "(4) Update days of saving" << endl;
             cout << "(5) Mark an event as completed" << endl;
             cout << "(6) Remove an event" << endl;
-            cout << "(7) Exit the program" << endl;
+            cout << "(7) Generate text file with total stones" << endl;
+            cout << "(8) Exit the program" << endl;
             cout << "Choose an option: ";
             cin >> choice;
         }
@@ -115,6 +117,13 @@ int main() {
             }
             break;
         case 7:
+            {
+                Table t = Table(); 
+                ofstream output("C:\\Users\\satya\\Code Practice\\stone-tracker\\glb_stone_tracker.txt", ofstream::out);
+                t.outputTextFile(output);
+            }
+            break;
+        case 8:
             choice = 0;
             break;
         default:

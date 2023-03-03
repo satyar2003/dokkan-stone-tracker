@@ -45,6 +45,10 @@ void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e
     cout << left << setw(columnWidth) << "Total Stones" << totalStones << endl;
 }
 
+void Table::outputTextFile (ofstream& of) {
+    of << "Test";
+}
+
 void printDivider(int x) {
     for (int i = 0; i < x + 10; ++i) {
         cout << "-";
