@@ -7,10 +7,13 @@
 #include "events.h"
 
 class Table {
+    private:
+        std::vector<std::string> tableLines;
     public:
         Table();
         ~Table();
-        void outputTable(int, int, Weekend, std::vector<Events>);
+        void fillTable(int, int, Weekend, std::vector<Events>);
+        void outputTable();
         void outputTextFile (std::ofstream&);
 };
 

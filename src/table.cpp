@@ -9,61 +9,78 @@ Table::Table() {}
 Table::~Table() {}
 
 // Prints dividing line 10 characters longer than inputted int [based on columnWidth variable from outputTable()]
-void printDivider(int);
-// Prints all events of a certain even types with corresponding stone count 
-void printEventType(int, vector<Events>, eventType, int &);
+string printDivider(int);
 
-// Prints table with total stones divided by category
-void Table::outputTable(int currentStones, int days, Weekend w, vector<Events> e) {
+// Fills tableLines vector with total stones from each source
+void Table::fillTable(int currentStones, int days, Weekend w, vector<Events> e) {
+    tableLines.clear();
     int totalStones = 0;
     int columnWidth = 30;
+    string spaces, line;
     for (int i = 0; i < e.size(); ++i) {
         if (e.at(i).getEventName().size() + 5 > columnWidth) {
             columnWidth = e.at(i).getEventName().size() + 5;
         }
     }
-    
-    cout << left << setw(columnWidth) << "Current Stones" << currentStones << endl;
-    cout << left << setw(columnWidth) << "Weekend Stones" << w.getWeekendStones() + w.stonesFromExtraDays() << endl;
+
+    for (int i = 0; i < columnWidth - 14; ++i) {
+        spaces += " ";
+    }
+    tableLines.push_back("Current Stones" + spaces + to_string(currentStones));
+    tableLines.push_back("Weekend Stones" + spaces + to_string(w.getWeekendStones() + w.stonesFromExtraDays()));
     totalStones += currentStones + w.getWeekendStones() + w.stonesFromExtraDays();
-    printDivider(columnWidth);
+    tableLines.push_back(printDivider(columnWidth));
 
-    cout << left << setw(columnWidth) << "Login Bonus" << days << endl;
-    cout << left << setw(columnWidth) << "Special Missions" << days << endl;
+    spaces = "";
+    for (int i = 0; i < columnWidth - 11; ++i) {
+        spaces += " ";
+    }
+    tableLines.push_back("Login Bonus" + spaces + to_string(days));
+
+    spaces = "";
+    for (int i = 0; i < columnWidth - 16; ++i) {
+        spaces += " ";
+    }
+    tableLines.push_back("Special Missions" + spaces + to_string(days));
     totalStones += days*2;
-    printDivider(columnWidth);
+    tableLines.push_back(printDivider(columnWidth));
 
-    printEventType(columnWidth, e, storyEvent, totalStones);
-    printEventType(columnWidth, e, dbStory, totalStones);
-    printEventType(columnWidth, e, strikeEvent, totalStones);
-    printEventType(columnWidth, e, dokkanEvent, totalStones);
-    printEventType(columnWidth, e, ultimateClash, totalStones);
-    printEventType(columnWidth, e, primeBattle, totalStones);
-    printEventType(columnWidth, e, EZA, totalStones);
-    printEventType(columnWidth, e, other, totalStones);
-
-    cout << left << setw(columnWidth) << "Total Stones" << totalStones << endl;
-}
-
-void Table::outputTextFile (ofstream& of) {
-    of << "Test";
-}
-
-void printDivider(int x) {
-    for (int i = 0; i < x + 10; ++i) {
-        cout << "-";
-    }
-    cout << endl;
-}
-
-void printEventType(int x, vector<Events> e, eventType et, int &total) {
-    bool b = false;
     for (int i = 0; i < e.size(); ++i) {
-        if (e.at(i).getEventType() == et) {
-            cout << left << setw(x) << e.at(i).getEventName() << e.at(i).getStoneCount() << endl;
-            total += e.at(i).getStoneCount();
-            b = true;
+        spaces = "";
+        for (int j = 0; j < columnWidth - e.at(i).getEventName().size(); ++j) {
+            spaces += " ";
         }
+        tableLines.push_back(e.at(i).getEventName() + spaces + to_string(e.at(i).getStoneCount()));
+        totalStones += e.at(i).getStoneCount();
     }
-    if (b) printDivider(x);
+    if (e.size() != 0) tableLines.push_back(printDivider(columnWidth));
+
+    spaces = "";
+    for (int i = 0; i < columnWidth - 12; ++i) {
+        spaces += " ";
+    }
+    tableLines.push_back("Total Stones" + spaces + to_string(totalStones));
+}
+
+// Prints table with total stones from each source
+void Table::outputTable() {
+    for (int i = 0; i < tableLines.size(); ++i) {
+        cout << tableLines.at(i) << endl;
+    }
+}
+
+// Creates text file with total stones from each source
+void Table::outputTextFile (ofstream& of) {
+    for (int i = 0; i < tableLines.size() - 1; ++i) {
+        of << tableLines.at(i) << endl;
+    }
+    of << tableLines.at(tableLines.size() - 1);
+}
+
+string printDivider(int x) {
+    string s;
+    for (int i = 0; i < x + 10; ++i) {
+        s += "-";
+    }
+    return s;
 }
