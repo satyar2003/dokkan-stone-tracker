@@ -42,6 +42,7 @@ int main() {
     int choice = 1;
     Weekend w = Weekend(days);
     vector<Events> eventList;
+    Table t = Table();
     while (choice != 0) {
         cout << endl;
         cout << "(1) Add an event" << endl;
@@ -86,9 +87,9 @@ int main() {
             }
         case 2:
             {
-                Table t = Table();
+                t.fillTable(currentStones, days, w, eventList);
                 cout << endl;
-                t.outputTable(currentStones, days, w, eventList);
+                t.outputTable();
                 break;
             }
         case 3:
@@ -118,9 +119,13 @@ int main() {
             break;
         case 7:
             {
-                Table t = Table(); 
-                ofstream output("C:\\Users\\satya\\Code Practice\\stone-tracker\\glb_stone_tracker.txt", ofstream::out);
-                t.outputTextFile(output);
+                t.fillTable(currentStones, days, w, eventList);
+                ofstream output("C:\\Users\\satya\\Code Practice\\stone-tracker\\glb_stone_tracker.txt", ofstream::out | ofstream::trunc);
+                if (output.is_open()) {
+                    t.outputTextFile(output);
+                    output.close();
+                }
+                else cout << "Problem with opening file" << endl;
             }
             break;
         case 8:
