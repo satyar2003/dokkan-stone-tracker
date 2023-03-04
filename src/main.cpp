@@ -120,7 +120,7 @@ int main() {
         case 7:
             {
                 t.fillTable(currentStones, days, w, eventList);
-                ofstream output("C:\\Users\\satya\\Code Practice\\stone-tracker\\glb_stone_tracker.txt", ofstream::out | ofstream::trunc);
+                ofstream output("glb_stone_tracker.txt", ofstream::out | ofstream::trunc);
                 if (output.is_open()) {
                     t.outputTextFile(output);
                     output.close();
