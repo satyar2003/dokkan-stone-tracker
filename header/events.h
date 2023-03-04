@@ -2,6 +2,7 @@
 #define EVENTS_H
 
 #include <string>
+#include <vector>
 
 enum eventType { invalid, storyEvent, dbStory, strikeEvent, dokkanEvent, ultimateClash, primeBattle, EZA, other };
 
@@ -18,6 +19,8 @@ class Events {
         eventType getEventType();
         void setStoneCount(int);
         void addEvent();
+        void completeEvent(vector<Events> &);
+        void removeEvent(vector<Events> &);
 };
 
 #endif
