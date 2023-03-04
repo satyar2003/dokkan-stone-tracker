@@ -60,6 +60,7 @@ void Table::fillTable(int currentStones, int days, Weekend w, vector<Events> e) 
         spaces += " ";
     }
     tableLines.push_back("Total Stones" + spaces + to_string(totalStones));
+    tableLines.push_back("Total Multis" + spaces + to_string(totalStones/50));
 }
 
 // Prints table with total stones from each source
