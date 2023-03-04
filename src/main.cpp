@@ -140,7 +140,7 @@ int main() {
     return 0;
 }
 
-void completeEvent(vector<Events> &e) {
+void Events::completeEvent(vector<Events> &e) {
     int option;
     cout << endl;
     for (int i = 0; i < e.size(); ++i) {
@@ -178,7 +178,7 @@ void completeEvent(vector<Events> &e) {
     e.at(option - 1).setStoneCount(0);
 }
 
-void removeEvent(vector<Events> &e) {
+void Events::removeEvent(vector<Events> &e) {
     int option;
     cout << endl;
     for (int i = 0; i < e.size(); ++i) {
