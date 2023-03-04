@@ -166,3 +166,79 @@ void Events::addEvent() {
             break;
     }
 }
+
+void Events::completeEvent(vector<Events> &e) {
+    int option;
+    cout << endl;
+    for (int i = 0; i < e.size(); ++i) {
+        cout << "(" << i + 1 << ") Mark " << e.at(i).getEventName() << " as completed" << endl;
+    }
+    cout << "Choose an option: ";
+    cin >> option;
+    bool b = true;
+    while(b) {
+        if(cin.good()){
+            if (option >= 1 || option <= e.size()) b = false;
+            else {
+                cin.clear();
+                cout << "Invalid input" << endl;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                for (int i = 0; i < e.size(); ++i) {
+                    cout << "(" << i + 1 << ") Mark " << e.at(i).getEventName() << " as completed" << endl;
+                }
+                cout << "Choose an option: ";
+                cin >> option;
+            }
+            
+        } 
+        else {
+            cin.clear();
+            cout << "Invalid input" << endl;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            for (int i = 0; i < e.size(); ++i) {
+                cout << "(" << i + 1 << ") Mark " << e.at(i).getEventName() << " as completed" << endl;
+            }
+            cout << "Choose an option: ";
+            cin >> option;
+        }
+    }
+    e.at(option - 1).setStoneCount(0);
+}
+
+void Events::removeEvent(vector<Events> &e) {
+    int option;
+    cout << endl;
+    for (int i = 0; i < e.size(); ++i) {
+        cout << "(" << i + 1 << ") Remove " << e.at(i).getEventName() << endl;
+    }
+    cout << "Choose an option: ";
+    cin >> option;
+    bool b = true;
+    while(b) {
+        if(cin.good()){
+            if (option >= 1 || option <= e.size()) b = false;
+            else {
+                cin.clear();
+                cout << "Invalid input" << endl;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                for (int i = 0; i < e.size(); ++i) {
+                    cout << "(" << i + 1 << ") Remove " << e.at(i).getEventName() << endl;
+                }
+                cout << "Choose an option: ";
+                cin >> option;
+            }
+            
+        } 
+        else {
+            cin.clear();
+            cout << "Invalid input" << endl;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            for (int i = 0; i < e.size(); ++i) {
+                cout << "(" << i + 1 << ") Remove " << e.at(i).getEventName() << endl;
+            }
+            cout << "Choose an option: ";
+            cin >> option;
+        }
+    }
+    e.erase(e.begin()+option-1);
+}
