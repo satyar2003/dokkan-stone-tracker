@@ -10,32 +10,92 @@ void completeEvent(vector<Events> &);
 void removeEvent(vector<Events> &);
 
 int main() {
-    int currentStones, totalStones, days;
-    cout << "Enter the number of dragon stones you currently have: ";
-    cin >> currentStones;
     bool b = true;
+    char c;
+    cout << "Would you like to input a text file? (y/n) ";
+    cin >> c;
     while(b) {
-        if(cin.good()) b = false;
+        if(cin.good()) {
+            if (c == 'y' || c == 'Y' || c == 'N' || c == 'n') {
+                b = false;
+            }
+        }
         else {
             cin.clear();
             cout << "Invalid input" << endl;
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            cout << "Enter the number of dragon stones you currently have: ";
-            cin >> currentStones;
+            cout << "Would you like to input a text file? (y/n) ";
+            cin >> c;
         }
     }
+    int currentStones = 0;
+    int totalStones = 0;
+    int days = 0;
+    if (c == 'n' || c == 'N') {
+        cout << "Enter the number of dragon stones you currently have: ";
+        cin >> currentStones;
+        while(b) {
+            if(cin.good()) b = false;
+            else {
+                cin.clear();
+                cout << "Invalid input" << endl;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                cout << "Enter the number of dragon stones you currently have: ";
+                cin >> currentStones;
+            }
+        }
 
-    cout << "Enter the number of days you want to save: ";
-    cin >> days;
-    b = true;
-    while(b) {
-        if(cin.good()) b = false;
+        cout << "Enter the number of days you want to save: ";
+        cin >> days;
+        b = true;
+        while(b) {
+            if(cin.good()) b = false;
+            else {
+                cin.clear();
+                cout << "Invalid input" << endl;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                cout << "Enter the number of days you want to save: ";
+                cin >> days;
+            }
+        }
+    }
+    else {
+        string in;
+        cout << "Input text file: ";
+        cin >> in;
+        b = true;
+        while(b) {
+            if(cin.good()) {
+                if (in.size() >= 4 && in.substr(in.size() - 4, 4) == ".txt") {
+                    b = false;
+                }
+                else {
+                    cin.clear();
+                    cout << "Invalid input" << endl;
+                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                    cout << "Input text file: ";
+                    cin >> in;
+                }
+            }
+            else {
+                cin.clear();
+                cout << "Invalid input" << endl;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                cout << "Input text file: ";
+                cin >> in;
+            }
+        }
+        string line;
+        ifstream input;
+        input.open(in);
+        if(input.is_open()) {
+            input.close();
+        }
         else {
-            cin.clear();
-            cout << "Invalid input" << endl;
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            cout << "Enter the number of days you want to save: ";
-            cin >> days;
+            int currentStones = 0;
+            int totalStones = 0;
+            int days = 0;
+            cout << "Error opening file. Setting all values to 0." << endl;
         }
     }
 
