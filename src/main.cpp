@@ -23,7 +23,6 @@ int main() {
         }
     }
     int currentStones = 0;
-    int totalStones = 0;
     int days = 0;
     if (c == 'n' || c == 'N') {
         cout << "Enter the number of dragon stones you currently have: ";
@@ -49,26 +48,54 @@ int main() {
         }
     }
     else {
-        string in;
+        string in, x;
         cout << "Input text file: ";
-        cin >> in;
+        cin.ignore();
+        getline(cin, in);
         b = true;
         while(b) {
-            if(cin.good() && in.size() >= 4 && in.substr(in.size() - 4, 4) == ".txt") b = false;
+            if(cin.good() && in.size() >= 4) {
+                if (in.substr(in.size() - 4, 4) == ".txt") {
+                    b = false;
+                }
+                else {
+                    clearIncorrectInput(cin, "Input text file: ");
+                    getline(cin, in);
+                }
+            } 
             else {
                 clearIncorrectInput(cin, "Input text file: ");
-                cin >> in;
+                getline(cin, in);
             }
         }
+
         string line;
-        ifstream input;
-        input.open(in);
+        ifstream input(in);
         if(input.is_open()) {
+            while(getline(input, line)) {
+                string stone = "";
+                if (line.substr(0, 14) == "Current Stones") {
+                    for (int i = 14; i < line.size(); ++i) {
+                        if (line.at(i) != ' ') {
+                            stone += line.at(i);
+                        }
+                    }
+                    currentStones = stoi(stone);
+                }
+                else if (line.substr(0, 11) == "Login Bonus" || line.substr(0, 16) == "Special Missions") {
+                    stone = "";
+                    for (int i = 16; i < line.size(); ++i) {
+                        if (line.at(i) != ' ') {
+                            stone += line.at(i);
+                        }
+                    }
+                    days = stoi(stone);
+                }
+            }
             input.close();
         }
         else {
             int currentStones = 0;
-            int totalStones = 0;
             int days = 0;
             cout << "Error opening file. Setting all values to 0." << endl;
         }
@@ -240,7 +267,7 @@ void removeEvent(vector<Events> &e) {
 
 void clearIncorrectInput(istream& in, string msg) {
     in.clear();
-    cout << endl << "Invalid input" << endl;
     in.ignore(numeric_limits<streamsize>::max(),'\n');
+    cout << endl << "Invalid input" << endl;
     cout << msg;
 }
