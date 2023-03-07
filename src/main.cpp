@@ -8,6 +8,7 @@ using namespace std;
 
 void completeEvent(vector<Events> &);
 void removeEvent(vector<Events> &);
+void clearIncorrectInput(istream&, string);
 
 int main() {
     bool b = true;
@@ -15,16 +16,9 @@ int main() {
     cout << "Would you like to input a text file? (y/n) ";
     cin >> c;
     while(b) {
-        if(cin.good()) {
-            if (c == 'y' || c == 'Y' || c == 'N' || c == 'n') {
-                b = false;
-            }
-        }
+        if(cin.good() && (c == 'y' || c == 'Y' || c == 'N' || c == 'n')) b = false;
         else {
-            cin.clear();
-            cout << "Invalid input" << endl;
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            cout << "Would you like to input a text file? (y/n) ";
+            clearIncorrectInput(cin, "Would you like to input a text file? (y/n) ");
             cin >> c;
         }
     }
@@ -34,13 +28,11 @@ int main() {
     if (c == 'n' || c == 'N') {
         cout << "Enter the number of dragon stones you currently have: ";
         cin >> currentStones;
+        b = true;
         while(b) {
             if(cin.good()) b = false;
             else {
-                cin.clear();
-                cout << "Invalid input" << endl;
-                cin.ignore(numeric_limits<streamsize>::max(),'\n');
-                cout << "Enter the number of dragon stones you currently have: ";
+                clearIncorrectInput(cin, "Enter the number of dragon stones you currently have: ");
                 cin >> currentStones;
             }
         }
@@ -51,10 +43,7 @@ int main() {
         while(b) {
             if(cin.good()) b = false;
             else {
-                cin.clear();
-                cout << "Invalid input" << endl;
-                cin.ignore(numeric_limits<streamsize>::max(),'\n');
-                cout << "Enter the number of days you want to save: ";
+                clearIncorrectInput(cin, "Enter the number of days you want to save: ");
                 cin >> days;
             }
         }
@@ -65,23 +54,9 @@ int main() {
         cin >> in;
         b = true;
         while(b) {
-            if(cin.good()) {
-                if (in.size() >= 4 && in.substr(in.size() - 4, 4) == ".txt") {
-                    b = false;
-                }
-                else {
-                    cin.clear();
-                    cout << "Invalid input" << endl;
-                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
-                    cout << "Input text file: ";
-                    cin >> in;
-                }
-            }
+            if(cin.good() && in.size() >= 4 && in.substr(in.size() - 4, 4) == ".txt") b = false;
             else {
-                cin.clear();
-                cout << "Invalid input" << endl;
-                cin.ignore(numeric_limits<streamsize>::max(),'\n');
-                cout << "Input text file: ";
+                clearIncorrectInput(cin, "Input text file: ");
                 cin >> in;
             }
         }
@@ -119,19 +94,16 @@ int main() {
         while(b) {
         if(cin.good()) b = false;
         else {
-            cin.clear();
-            cout << endl << "Invalid input";
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            cout << endl;
-            cout << "(1) Add an event" << endl;
-            cout << "(2) Output total amount of stones" << endl;
-            cout << "(3) Update current stone count" << endl;
-            cout << "(4) Update days of saving" << endl;
-            cout << "(5) Mark an event as completed" << endl;
-            cout << "(6) Remove an event" << endl;
-            cout << "(7) Generate text file with total stones" << endl;
-            cout << "(8) Exit the program" << endl;
-            cout << "Choose an option: ";
+            string s = "(1) Add an event\n";
+            s += "(2) Output total amount of stones\n";
+            s += "(3) Update current stone count\n";
+            s += "(4) Update days of saving\n";
+            s += "(5) Mark an event as completed\n";
+            s += "(6) Remove an event\n";
+            s += "(7) Generate text file with total stones\n";
+            s += "(8) Exit the program\n";
+            s += "Choose an option: ";
+            clearIncorrectInput(cin, s);
             cin >> choice;
         }
     }
@@ -153,12 +125,28 @@ int main() {
                 break;
             }
         case 3:
+            b = true;
             cout << endl << "Enter new stone count: ";
             cin >> currentStones;
+            while (b) {
+                if (cin.good()) b = false;
+                else {
+                    clearIncorrectInput(cin, "Enter new stone count: ");
+                    cin >> currentStones;
+                }
+            }
             break;
         case 4:
+            b = true;
             cout << endl << "Enter number of days you will save: ";
             cin >> days;
+            while (b) {
+                if (cin.good()) b = false;
+                else {
+                    clearIncorrectInput(cin, "Enter number of days you will save: ");
+                    cin >> days;
+                }
+            }
             w = Weekend(days);
             break;
         case 5:
@@ -210,33 +198,20 @@ void completeEvent(vector<Events> &e) {
     cin >> option;
     bool b = true;
     while(b) {
-        if(cin.good()){
-            if (option >= 1 || option <= e.size()) b = false;
+        if(cin.good() && (option >= 1 && option <= e.size())) b = false;
             else {
-                cin.clear();
-                cout << "Invalid input" << endl;
-                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                string s = "";
                 for (int i = 0; i < e.size(); ++i) {
-                    cout << "(" << i + 1 << ") Mark " << e.at(i).getEventName() << " as completed" << endl;
+                    s += "(" + to_string(i + 1) + ") Mark " + e.at(i).getEventName() + " as completed\n";
                 }
-                cout << "Choose an option: ";
+                s += "Choose an option: ";
+                clearIncorrectInput(cin, s);
                 cin >> option;
             }
             
-        } 
-        else {
-            cin.clear();
-            cout << "Invalid input" << endl;
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            for (int i = 0; i < e.size(); ++i) {
-                cout << "(" << i + 1 << ") Mark " << e.at(i).getEventName() << " as completed" << endl;
-            }
-            cout << "Choose an option: ";
-            cin >> option;
         }
-    }
     e.at(option - 1).setStoneCount(0);
-}
+    }
 
 void removeEvent(vector<Events> &e) {
     int option;
@@ -248,30 +223,24 @@ void removeEvent(vector<Events> &e) {
     cin >> option;
     bool b = true;
     while(b) {
-        if(cin.good()){
-            if (option >= 1 || option <= e.size()) b = false;
+        if(cin.good() && (option >= 1 && option <= e.size())) b = false;
             else {
-                cin.clear();
-                cout << "Invalid input" << endl;
-                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                string s = "";
                 for (int i = 0; i < e.size(); ++i) {
-                    cout << "(" << i + 1 << ") Remove " << e.at(i).getEventName() << endl;
+                    s += "(" + to_string(i + 1) + ") Remove " + e.at(i).getEventName() + "\n";
                 }
-                cout << "Choose an option: ";
+                s += "Choose an option: ";
+                clearIncorrectInput(cin, s);
                 cin >> option;
             }
             
         } 
-        else {
-            cin.clear();
-            cout << "Invalid input" << endl;
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            for (int i = 0; i < e.size(); ++i) {
-                cout << "(" << i + 1 << ") Remove " << e.at(i).getEventName() << endl;
-            }
-            cout << "Choose an option: ";
-            cin >> option;
-        }
-    }
     e.erase(e.begin()+option-1);
+    }
+
+void clearIncorrectInput(istream& in, string msg) {
+    in.clear();
+    cout << endl << "Invalid input" << endl;
+    in.ignore(numeric_limits<streamsize>::max(),'\n');
+    cout << msg;
 }
