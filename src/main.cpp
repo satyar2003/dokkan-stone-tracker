@@ -112,9 +112,7 @@ int main() {
         case 1:
             {
                 Events e = Events();
-                if (e.getEventType() != invalid) {
-                    eventList.push_back(e);
-                }
+                eventList.push_back(e);
                 break;
             }
         case 2:
@@ -180,7 +178,7 @@ int main() {
             choice = 0;
             break;
         default:
-            cout << "Invalid option" << endl;
+            cout << "Invalid input" << endl;
             break;
         }
     }
