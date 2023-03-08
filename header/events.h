@@ -9,6 +9,7 @@ class Events {
         int stoneCount;
     public:
         Events();
+        Events(std::string, int);
         ~Events();
         std::string getEventName();
         int getStoneCount();

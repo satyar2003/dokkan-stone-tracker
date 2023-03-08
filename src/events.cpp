@@ -8,6 +8,11 @@ Events::Events() {
     addEvent();
 }
 
+Events::Events(string name, int stones) {
+    eventName = name;
+    stoneCount = stones;
+}
+
 Events::~Events() {}
 
 string Events::getEventName() {

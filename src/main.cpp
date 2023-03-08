@@ -2,6 +2,7 @@
 #include <string>
 #include <limits>
 #include <vector>
+#include <ctype.h>
 #include "../header/table.h"
 
 using namespace std;
@@ -24,6 +25,7 @@ int main() {
     }
     int currentStones = 0;
     int days = 0;
+    vector<Events> eventList;
     if (c == 'n' || c == 'N') {
         cout << "Enter the number of dragon stones you currently have: ";
         cin >> currentStones;
@@ -75,8 +77,9 @@ int main() {
             while(getline(input, line)) {
                 string stone = "";
                 if (line.substr(0, 14) == "Current Stones") {
-                    for (int i = 14; i < line.size(); ++i) {
-                        if (line.at(i) != ' ') {
+                    size_t pos = line.find("   ");
+                    for (int i = static_cast<int>(pos); i < line.size(); ++i) {
+                        if (isdigit(line.at(i))) {
                             stone += line.at(i);
                         }
                     }
@@ -84,12 +87,26 @@ int main() {
                 }
                 else if (line.substr(0, 11) == "Login Bonus" || line.substr(0, 16) == "Special Missions") {
                     stone = "";
-                    for (int i = 16; i < line.size(); ++i) {
-                        if (line.at(i) != ' ') {
+                    size_t pos = line.find("   ");
+                    for (int i = static_cast<int>(pos); i < line.size(); ++i) {
+                        if (isdigit(line.at(i))) {
                             stone += line.at(i);
                         }
                     }
                     days = stoi(stone);
+                }
+                else if (!(line.substr(0, 10) == "----------" 
+                        || line.substr(0, 12) == "Total Stones" 
+                        || line.substr(0, 12) == "Total Multis" 
+                        || line.substr(0, 14) == "Weekend Stones")) {
+                    stone = "";
+                    size_t pos = line.find("   ");
+                    for (int i = static_cast<int>(pos); i < line.size(); ++i) {
+                        if (isdigit(line.at(i))) {
+                            stone += line.at(i);
+                        }
+                    }
+                    eventList.push_back(Events(line.substr(0, pos), stoi(stone)));
                 }
             }
             input.close();
@@ -101,10 +118,9 @@ int main() {
         }
     }
 
-    int choice = 1;
     Weekend w = Weekend(days);
-    vector<Events> eventList;
     Table t = Table();
+    int choice = 1;
     while (choice != 0) {
         cout << endl;
         cout << "(1) Add an event" << endl;
