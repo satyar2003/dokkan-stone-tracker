@@ -12,9 +12,11 @@ class Events {
         Events(std::string, int);
         ~Events();
         std::string getEventName();
+        void setEventName(std::string);
         int getStoneCount();
         void setStoneCount(int);
         void addEvent();
+        void updateEvent();
 };
 
 #endif

@@ -9,6 +9,7 @@ using namespace std;
 
 void completeEvent(vector<Events> &);
 void removeEvent(vector<Events> &);
+void updateEvent(vector<Events> &);
 void clearIncorrectInput(istream&, string);
 
 int main() {
@@ -129,8 +130,9 @@ int main() {
         cout << "(4) Update days of saving" << endl;
         cout << "(5) Mark an event as completed" << endl;
         cout << "(6) Remove an event" << endl;
-        cout << "(7) Generate text file with total stones" << endl;
-        cout << "(8) Exit the program" << endl;
+        cout << "(7) Update an event" << endl;
+        cout << "(8) Generate text file with total stones" << endl;
+        cout << "(9) Exit the program" << endl;
         cout << "Choose an option: ";
         cin >> choice;
         b = true;
@@ -143,8 +145,9 @@ int main() {
             s += "(4) Update days of saving\n";
             s += "(5) Mark an event as completed\n";
             s += "(6) Remove an event\n";
-            s += "(7) Generate text file with total stones\n";
-            s += "(8) Exit the program\n";
+            s += "(7) Update an event\n";
+            s += "(8) Generate text file with total stones\n";
+            s += "(9) Exit the program\n";
             s += "Choose an option: ";
             clearIncorrectInput(cin, s);
             cin >> choice;
@@ -207,6 +210,14 @@ int main() {
             }
             break;
         case 7:
+            if (eventList.size() > 0) {
+                updateEvent(eventList);
+            }
+            else {
+                cout << "No events to update" << endl;
+            }
+            break;
+        case 8:
             {
                 t.fillTable(currentStones, days, w, eventList);
                 ofstream output("glb_stone_tracker.txt", ofstream::out | ofstream::trunc);
@@ -217,7 +228,7 @@ int main() {
                 else cout << "Problem with opening file" << endl;
             }
             break;
-        case 8:
+        case 9:
             choice = 0;
             break;
         default:
@@ -278,6 +289,31 @@ void removeEvent(vector<Events> &e) {
         } 
     e.erase(e.begin()+option-1);
     }
+
+void updateEvent(vector<Events> &e) {
+    int option;
+    cout << endl;
+    for (int i = 0; i < e.size(); ++i) {
+        cout << "(" << i + 1 << ") Update " << e.at(i).getEventName() << endl;
+    }
+    cout << "Choose an option: ";
+    cin >> option;
+    bool b = true;
+    while(b) {
+        if(cin.good() && (option >= 1 && option <= e.size())) b = false;
+            else {
+                string s = "";
+                for (int i = 0; i < e.size(); ++i) {
+                    s += "(" + to_string(i + 1) + ") Update " + e.at(i).getEventName() + "\n";
+                }
+                s += "Choose an option: ";
+                clearIncorrectInput(cin, s);
+                cin >> option;
+            }
+            
+        } 
+    e.at(option-1).updateEvent();
+}
 
 void clearIncorrectInput(istream& in, string msg) {
     in.clear();
