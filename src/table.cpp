@@ -8,7 +8,7 @@ Table::Table() {}
 
 Table::~Table() {}
 
-// Prints dividing line 10 characters longer than inputted int [based on columnWidth variable from outputTable()]
+// Prints dividing line 10 characters longer than column width
 string printDivider(int);
 
 // Fills tableLines vector with total stones from each source
