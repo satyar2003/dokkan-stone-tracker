@@ -80,7 +80,7 @@ int main() {
                 if (line.substr(0, 14) == "Current Stones") {
                     size_t pos = line.find("   ");
                     for (int i = static_cast<int>(pos); i < line.size(); ++i) {
-                        if (isdigit(line.at(i))) {
+                        if (isdigit(line.at(i)) || line.at(i) == '-') {
                             stone += line.at(i);
                         }
                     }
@@ -90,7 +90,7 @@ int main() {
                     stone = "";
                     size_t pos = line.find("   ");
                     for (int i = static_cast<int>(pos); i < line.size(); ++i) {
-                        if (isdigit(line.at(i))) {
+                        if (isdigit(line.at(i)) || line.at(i) == '-') {
                             stone += line.at(i);
                         }
                     }
@@ -103,7 +103,7 @@ int main() {
                     stone = "";
                     size_t pos = line.find("   ");
                     for (int i = static_cast<int>(pos); i < line.size(); ++i) {
-                        if (isdigit(line.at(i))) {
+                        if (isdigit(line.at(i)) || line.at(i) == '-') {
                             stone += line.at(i);
                         }
                     }
