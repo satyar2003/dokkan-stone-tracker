@@ -244,7 +244,7 @@ void completeEvent(vector<Events> &e) {
     int option;
     cout << endl;
     for (int i = 0; i < e.size(); ++i) {
-        cout << "(" << i + 1 << ") Mark " << e.at(i).getEventName() << " as completed" << endl;
+        cout << "(" << i + 1 << ") Mark \"" << e.at(i).getEventName() << "\" as completed" << endl;
     }
     cout << "Choose an option: ";
     cin >> option;
@@ -254,7 +254,7 @@ void completeEvent(vector<Events> &e) {
             else {
                 string s = "";
                 for (int i = 0; i < e.size(); ++i) {
-                    s += "(" + to_string(i + 1) + ") Mark " + e.at(i).getEventName() + " as completed\n";
+                    s += "(" + to_string(i + 1) + ") Mark \"" + e.at(i).getEventName() + "\" as completed\n";
                 }
                 s += "Choose an option: ";
                 clearIncorrectInput(cin, s);
@@ -269,7 +269,7 @@ void removeEvent(vector<Events> &e) {
     int option;
     cout << endl;
     for (int i = 0; i < e.size(); ++i) {
-        cout << "(" << i + 1 << ") Remove " << e.at(i).getEventName() << endl;
+        cout << "(" << i + 1 << ") Remove \"" << e.at(i).getEventName() << "\"" << endl;
     }
     cout << "Choose an option: ";
     cin >> option;
@@ -279,7 +279,7 @@ void removeEvent(vector<Events> &e) {
             else {
                 string s = "";
                 for (int i = 0; i < e.size(); ++i) {
-                    s += "(" + to_string(i + 1) + ") Remove " + e.at(i).getEventName() + "\n";
+                    s += "(" + to_string(i + 1) + ") Remove \"" + e.at(i).getEventName() + "\"\n";
                 }
                 s += "Choose an option: ";
                 clearIncorrectInput(cin, s);
@@ -294,7 +294,7 @@ void updateEvent(vector<Events> &e) {
     int option;
     cout << endl;
     for (int i = 0; i < e.size(); ++i) {
-        cout << "(" << i + 1 << ") Update " << e.at(i).getEventName() << endl;
+        cout << "(" << i + 1 << ") Update \"" << e.at(i).getEventName() << "\"" << endl;
     }
     cout << "Choose an option: ";
     cin >> option;
@@ -304,7 +304,7 @@ void updateEvent(vector<Events> &e) {
             else {
                 string s = "";
                 for (int i = 0; i < e.size(); ++i) {
-                    s += "(" + to_string(i + 1) + ") Update " + e.at(i).getEventName() + "\n";
+                    s += "(" + to_string(i + 1) + ") Update \"" + e.at(i).getEventName() + "\"\n";
                 }
                 s += "Choose an option: ";
                 clearIncorrectInput(cin, s);
