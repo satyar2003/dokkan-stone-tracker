@@ -221,12 +221,40 @@ int main() {
         case 8:
             {
                 t.fillTable(currentStones, days, w, eventList);
-                ofstream output("glb_stone_tracker.txt", ofstream::out | ofstream::trunc);
-                if (output.is_open()) {
-                    t.outputTextFile(output);
-                    output.close();
+
+                b = true;
+                cout << "Would you like to name the text file? (y/n) ";
+                cin >> c;
+                while(b) {
+                    if(cin.good() && (c == 'y' || c == 'Y' || c == 'N' || c == 'n')) b = false;
+                    else {
+                        clearIncorrectInput(cin, "Would you like to input a text file? (y/n) ");
+                        cin >> c;
+                    }
                 }
-                else cout << "Problem with opening file" << endl;
+
+                if (c == 'y' || c == 'Y') {
+                    string txtFileName = "";
+                    cout << "Enter what you would like to name the file: ";
+                    cin >> txtFileName;
+                    txtFileName += ".txt";
+                    ofstream output(txtFileName, ofstream::out | ofstream::trunc);
+                    if (output.is_open()) {
+                        t.outputTextFile(output);
+                        output.close();
+                    }
+                    else cout << "Problem with opening file" << endl;
+                }
+                else {
+                    ofstream output("glb_stone_tracker.txt", ofstream::out | ofstream::trunc);
+                    if (output.is_open()) {
+                        t.outputTextFile(output);
+                        output.close();
+                    }
+                    else cout << "Problem with opening file" << endl;
+                }
+
+                
             }
             break;
         case 9:
