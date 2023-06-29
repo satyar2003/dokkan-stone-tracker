@@ -64,7 +64,7 @@ void Table::fillTable(int currentStones, int days, Weekend w, vector<Events> e) 
     tableLines.push_back("Total Stones" + spaces + to_string(totalStones));
     tableLines.push_back("Total Multis" + spaces + to_string(totalStones/50));
 
-    double chance = (1 - pow(.995, totalStones/5)) * 100;
+    double chance = (1 - pow(.995, (totalStones/50)*10)) * 100;
     stringstream st;
     st << fixed << setprecision(2) << chance;
     string l = st.str();
