@@ -237,7 +237,9 @@ int main() {
                     string txtFileName = "";
                     cout << "Enter what you would like to name the file: ";
                     cin >> txtFileName;
-                    txtFileName += ".txt";
+                    if (txtFileName.substr(txtFileName.size() - 4, 4) != ".txt") {
+                        txtFileName += ".txt";
+                    }
                     ofstream output(txtFileName, ofstream::out | ofstream::trunc);
                     if (output.is_open()) {
                         t.outputTextFile(output);
