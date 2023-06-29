@@ -99,7 +99,8 @@ int main() {
                 else if (!(line.substr(0, 10) == "----------" 
                         || line.substr(0, 12) == "Total Stones" 
                         || line.substr(0, 12) == "Total Multis" 
-                        || line.substr(0, 14) == "Weekend Stones")) {
+                        || line.substr(0, 14) == "Weekend Stones"
+                        || line.substr(0, 25) == "Chance to pull new DFE LR")) {
                     stone = "";
                     size_t pos = line.find("   ");
                     for (int i = static_cast<int>(pos); i < line.size(); ++i) {
