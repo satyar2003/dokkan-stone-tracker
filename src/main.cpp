@@ -15,6 +15,7 @@ void clearIncorrectInput(istream&, string);
 int main() {
     bool b = true;
     char c;
+    string in = "";
     cout << "Would you like to input a text file? (y/n) ";
     cin >> c;
     while(b) {
@@ -51,7 +52,7 @@ int main() {
         }
     }
     else {
-        string in, x;
+        string x;
         cout << "Input text file: ";
         cin.ignore();
         getline(cin, in);
@@ -248,12 +249,22 @@ int main() {
                     else cout << "Problem with opening file" << endl;
                 }
                 else {
-                    ofstream output("glb_stone_tracker.txt", ofstream::out | ofstream::trunc);
-                    if (output.is_open()) {
-                        t.outputTextFile(output);
-                        output.close();
+                    if (in == "") {
+                        ofstream output("glb_stone_tracker.txt", ofstream::out | ofstream::trunc);
+                        if (output.is_open()) {
+                            t.outputTextFile(output);
+                            output.close();
+                        }
+                        else cout << "Problem with opening file" << endl;
                     }
-                    else cout << "Problem with opening file" << endl;
+                    else {
+                        ofstream output(in, ofstream::out | ofstream::trunc);
+                        if (output.is_open()) {
+                            t.outputTextFile(output);
+                            output.close();
+                        }
+                        else cout << "Problem with opening file" << endl;
+                    }
                 }
 
                 
