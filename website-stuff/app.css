@@ -58,18 +58,18 @@ label {
     justify-content: space-between;
     width: auto; /* Adjust the width as needed */
     margin-bottom: auto;
-  }
-  
-  .output-label {
+}
+
+.output-label {
     text-align: left;
-  }
-  
-  .output-value {
+}
+
+.output-value {
     text-align: right;
     width: auto; /* Adjust the width as needed */
-  }
+}
 
-  .divider-line {
+.divider-line {
     margin-bottom: auto;
     margin-top: auto;
-  }
+}

@@ -39,31 +39,31 @@ app.post('/process', (req, res) => {
 });
 
 format = function (s, d) {
-  let columnWidth = 40;
-  let dividerLine = "";
-  for (let i = 0; i < columnWidth; i++) {
-    dividerLine += "-";  
-  }
-  let output = `
+    let columnWidth = 40;
+    let dividerLine = "";
+    for (let i = 0; i < columnWidth; i++) {
+        dividerLine += "-";  
+    }
+    let output = `
     <div class="output-row">
-      <span class="output-label">Current Stones</span>
-      <span class="output-value">${s}</span>
+        <span class="output-label">Current Stones</span>
+        <span class="output-value">${s}</span>
     </div>
     <p class="divider-line">${dividerLine}</p>
     <div class="output-row">
-      <span class="output-label">Login Bonus</span>
-      <span class="output-value">${d}</span>
+        <span class="output-label">Login Bonus</span>
+        <span class="output-value">${d}</span>
     </div>
     <div class="output-row">
-      <span class="output-label">Special Missions</span>
-      <span class="output-value">${d}</span>
+        <span class="output-label">Special Missions</span>
+        <span class="output-value">${d}</span>
     </div>
     <p class="divider-line">${dividerLine}</p>
     <div class="output-row">
-      <span class="output-label">Total Stones</span>
-      <span class="output-value">${s + d + d}</span>
+        <span class="output-label">Total Stones</span>
+        <span class="output-value">${s + d + d}</span>
     </div>
-  `;
-  
-  return output;
+    `;
+
+    return output;
 };
