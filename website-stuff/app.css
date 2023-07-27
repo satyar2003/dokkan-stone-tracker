@@ -43,3 +43,11 @@ label {
     color: var(--text-color-light);
     font-weight: bold;
 }
+
+.formatted-text {
+    background-color: gray;
+    padding: 10px;
+    max-width: fit-content;
+    margin: 0 auto;
+    display: none;
+}
