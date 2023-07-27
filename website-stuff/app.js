@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 
+let format;
+
 app.listen(3000, () => {
     console.log("app.js is running");
 });
@@ -23,16 +25,27 @@ app.post('/process', (req, res) => {
     const inputDate = new Date(userDateTime);
     const currentDate = new Date();
     const timeDifference = inputDate.getTime() - currentDate.getTime();
-    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+    let daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
 
-    let totalStones = userStones + daysDifference;
-    const formattedDate = inputDate.toLocaleDateString();
+    // const formattedDate = inputDate.toLocaleDateString();
 
     const currentTime = new Date(currentDate.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
     if (currentTime.getHours() < 17) {
-        totalStones += 1;
+        daysDifference += 1;
     }
 
-    const message = `You will have ${totalStones} stones by ${formattedDate}.`;
-    res.send(message);
+    const formattedOutput = format(userStones, daysDifference);
+    res.send(formattedOutput);
 });
+
+format = function(s, d) {
+    let spaces = "";
+    for (let i = 0; i < 30; ++i) {
+        spaces += "&nbsp;";
+    }
+    let output = `Current Stones${spaces}${s}<br>
+                  Login Bonus${spaces}${d}<br>
+                  Special Missions${spaces}${d}<br>
+                  Total Stones${spaces}${s+d+d}`;
+    return output;
+}
