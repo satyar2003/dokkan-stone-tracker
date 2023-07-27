@@ -15,8 +15,8 @@
             <input type="number" id="stones" name="stones">
             <button type="submit">Submit</button>
             <br><br>
-            <label for="datetime"><b>Select a date and time:</b></label>
-            <input type="datetime-local" id="datetime" name="datetime">
+            <label for="date"><b>Select a date:</b></label>
+            <input type="date" id="date" name="date">
             <button type="submit">Submit</button>
         </form>
         <p id="result"></p>
@@ -31,7 +31,8 @@
         
               // Get the user input
               const userInputStones = document.getElementById("stones").value;
-              const userInputDateTime = document.getElementById("datetime").value;
+              const userInputDate = document.getElementById("date").value;
+              const userInputDateTime = userInputDate + "T00:00:00";
         
               // Create a new XMLHttpRequest object (AJAX)
               const xhr = new XMLHttpRequest();

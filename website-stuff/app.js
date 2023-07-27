@@ -25,8 +25,13 @@ app.post('/process', (req, res) => {
     const timeDifference = inputDate.getTime() - currentDate.getTime();
     const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
 
-    const totalStones = userStones + daysDifference;
+    let totalStones = userStones + daysDifference;
     const formattedDate = inputDate.toLocaleDateString();
+
+    const currentTime = new Date(currentDate.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+    if (currentTime.getHours() < 17) {
+        totalStones += 1;
+    }
 
     const message = `You will have ${totalStones} stones by ${formattedDate}.`;
     res.send(message);
