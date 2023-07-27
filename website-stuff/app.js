@@ -38,14 +38,32 @@ app.post('/process', (req, res) => {
     res.send(formattedOutput);
 });
 
-format = function(s, d) {
-    let spaces = "";
-    for (let i = 0; i < 30; ++i) {
-        spaces += "&nbsp;";
-    }
-    let output = `Current Stones${spaces}${s}<br>
-                  Login Bonus${spaces}${d}<br>
-                  Special Missions${spaces}${d}<br>
-                  Total Stones${spaces}${s+d+d}`;
-    return output;
-}
+format = function (s, d) {
+  let columnWidth = 40;
+  let dividerLine = "";
+  for (let i = 0; i < columnWidth; i++) {
+    dividerLine += "-";  
+  }
+  let output = `
+    <div class="output-row">
+      <span class="output-label">Current Stones</span>
+      <span class="output-value">${s}</span>
+    </div>
+    <p class="divider-line">${dividerLine}</p>
+    <div class="output-row">
+      <span class="output-label">Login Bonus</span>
+      <span class="output-value">${d}</span>
+    </div>
+    <div class="output-row">
+      <span class="output-label">Special Missions</span>
+      <span class="output-value">${d}</span>
+    </div>
+    <p class="divider-line">${dividerLine}</p>
+    <div class="output-row">
+      <span class="output-label">Total Stones</span>
+      <span class="output-value">${s + d + d}</span>
+    </div>
+  `;
+  
+  return output;
+};
