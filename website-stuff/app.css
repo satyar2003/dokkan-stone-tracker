@@ -1,0 +1,45 @@
+* {
+    text-align: center;
+}
+
+/* Default light mode */
+:root {
+    --background-color-light: #f0f0f0;
+}
+  
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color-light: #1a1a1a;
+    }
+}
+
+body {
+    background-color: var(--background-color-light);
+}
+
+/* Default light mode */
+:root {
+    --text-color-light: #000000; /* Black */
+  }
+  
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color-light: #ffffff; /* White */
+    }
+}
+
+h1 {
+    font-family: "Tahoma", sans-serif;
+    color: var(--text-color-light);
+}
+
+label {
+    color: var(--text-color-light);
+}
+
+#result {
+    color: var(--text-color-light);
+    font-weight: bold;
+}

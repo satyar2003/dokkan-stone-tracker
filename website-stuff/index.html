@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <title>Dokkan Stone Tracker</title>
+        <link rel="icon" type="image/x-icon" href="icon.ico">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="app.css">
+        <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"> -->
+    </head>
+    <body>
+        <h1>Dokkan Stone Tracker</h1>
+        <form action="/process" method="post">
+            <label for="stones"><b>Enter stone count:</b></label>
+            <input type="number" id="stones" name="stones">
+            <button type="submit">Submit</button>
+            <br><br>
+            <label for="datetime"><b>Select a date and time:</b></label>
+            <input type="datetime-local" id="datetime" name="datetime">
+            <button type="submit">Submit</button>
+        </form>
+        <p id="result"></p>
+
+        <script>
+            // JavaScript code for handling form submission
+            const inputForm = document.querySelector("form");
+            const resultElement = document.getElementById("result");
+        
+            inputForm.addEventListener("submit", function (event) {
+              event.preventDefault(); // Prevent the default form submission
+        
+              // Get the user input
+              const userInputStones = document.getElementById("stones").value;
+              const userInputDateTime = document.getElementById("datetime").value;
+        
+              // Create a new XMLHttpRequest object (AJAX)
+              const xhr = new XMLHttpRequest();
+              xhr.open("POST", "/process", true);
+              xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        
+              // Define the callback function when the server responds
+              xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                  // Update the result element with the server response
+                  resultElement.innerHTML = xhr.responseText;
+                }
+              };
+        
+            // Prepare the form data to send to the server
+            const formData = `stones=${encodeURIComponent(userInputStones)}&datetime=${encodeURIComponent(userInputDateTime)}`;
+
+            // Send the form data to the server
+            xhr.send(formData);
+            });
+        </script>
+    </body>
+</html>
