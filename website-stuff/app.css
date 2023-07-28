@@ -73,3 +73,12 @@ label {
     margin-bottom: auto;
     margin-top: auto;
 }
+
+.container {
+    display: flex;
+    justify-content: center; /* Center the container horizontally */
+}
+
+.centered-button {
+    text-align: center;
+}
