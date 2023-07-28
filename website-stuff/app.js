@@ -35,9 +35,7 @@ app.post('/process', (req, res) => {
         daysDifference += 1;
     }
 
-    const weekendStones = weekend(inputDate);
-
-    const formattedOutput = format(userStones, daysDifference, weekendStones);
+    const formattedOutput = format(userStones, daysDifference, weekend(inputDate));
     res.send(formattedOutput);
 });
 
