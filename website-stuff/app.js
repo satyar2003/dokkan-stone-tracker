@@ -77,6 +77,9 @@ weekend = function (d) {
     const curr = new Date();
     let weekends = 0;
 
+    if (curr.getDay() === 5) weekends--;
+    else if (curr.getDay() === 6) weekends--;
+
     while (curr <= d) {
         if(curr.getDay() === 5 || curr.getDay() === 6) {
             weekends++;
