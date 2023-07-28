@@ -21,7 +21,6 @@ app.get("/", (req, res) => {
 
 app.get("/buttonClicked", (req, res) => {
     console.log("button clicked");
-    res.send("Button clicked!");
 });
 
 app.post('/process', (req, res) => {
