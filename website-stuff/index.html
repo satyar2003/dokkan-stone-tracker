@@ -21,6 +21,10 @@
             <br><br>
         </form>
         <div class="formatted-text" id="result"></div>
+        <br>
+        <div class="container centered-button">
+          <button id="myButton" style="display: none;">Add an event</button>
+        </div>
 
         <script>
             // JavaScript code for handling form submission
@@ -34,6 +38,8 @@
               const userInputStones = document.getElementById("stones").value;
               const userInputDate = document.getElementById("date").value;
               const userInputDateTime = userInputDate + "T00:00:00";
+              const myButton = document.getElementById("myButton");
+              myButton.style.display = "block";
         
               // Create a new XMLHttpRequest object (AJAX)
               const xhr = new XMLHttpRequest();
@@ -55,6 +61,19 @@
 
             // Send the form data to the server
             xhr.send(formData);
+
+            // Button click event listener
+            myButton.addEventListener("click", function () {
+                // When the button is clicked, make an AJAX request to the server
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "/buttonClicked", true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        console.log(xhr.responseText); // Response from the server
+                    }
+                };
+                xhr.send();
+            });
             });
         </script>
     </body>

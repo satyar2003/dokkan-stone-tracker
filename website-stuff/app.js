@@ -19,6 +19,11 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
+app.get("/buttonClicked", (req, res) => {
+    console.log("button clicked");
+    res.send("Button clicked!");
+});
+
 app.post('/process', (req, res) => {
     const userStones = parseInt(req.body.stones);
     const userDateTime = req.body.datetime;
