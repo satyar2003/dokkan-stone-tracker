@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const app = express();
 
 let format;
+let weekend;
 
 app.listen(3000, () => {
     console.log("app.js is running");
@@ -34,11 +35,13 @@ app.post('/process', (req, res) => {
         daysDifference += 1;
     }
 
-    const formattedOutput = format(userStones, daysDifference);
+    const weekendStones = weekend(inputDate);
+
+    const formattedOutput = format(userStones, daysDifference, weekendStones);
     res.send(formattedOutput);
 });
 
-format = function (s, d) {
+format = function (s, d, w) {
     let columnWidth = 40;
     let dividerLine = "";
     for (let i = 0; i < columnWidth; i++) {
@@ -48,6 +51,10 @@ format = function (s, d) {
     <div class="output-row">
         <span class="output-label">Current Stones</span>
         <span class="output-value">${s}</span>
+    </div>
+    <div class="output-row">
+        <span class="output-label">Weekend Stones</span>
+        <span class="output-value">${w}</span>
     </div>
     <p class="divider-line">${dividerLine}</p>
     <div class="output-row">
@@ -61,9 +68,22 @@ format = function (s, d) {
     <p class="divider-line">${dividerLine}</p>
     <div class="output-row">
         <span class="output-label">Total Stones</span>
-        <span class="output-value">${s + d + d}</span>
+        <span class="output-value">${s + d + d + w}</span>
     </div>
     `;
 
     return output;
 };
+
+weekend = function (d) {
+    const curr = new Date();
+    let weekends = 0;
+
+    while (curr <= d) {
+        if(curr.getDay() === 5 || curr.getDay() === 6) {
+            weekends++;
+        }
+        curr.setHours(curr.getHours() + 24);
+    }
+    return weekends;
+}
