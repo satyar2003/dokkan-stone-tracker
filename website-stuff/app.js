@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/buttonClicked", (req, res) => {
-    console.log("button clicked");
+    // console.log("button clicked");
 });
 
 app.post('/process', (req, res) => {
@@ -90,5 +90,8 @@ weekend = function (d) {
         }
         curr.setHours(curr.getHours() + 24);
     }
+
+    if (d.getDay() === 5 || d.getDay() === 6) weekends++;
+
     return weekends;
 }
