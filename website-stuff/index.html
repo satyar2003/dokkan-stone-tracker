@@ -25,6 +25,14 @@
         <div class="container centered-button">
           <button id="myButton" style="display: none;"><b>Add an event</b></button>
         </div>
+        
+        <!-- The modal (popup) structure -->
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+              <span class="close">&times;</span>
+              <p>This is the popup content. Replace this with your desired content.</p>
+          </div>
+      </div>
 
         <script>
             // JavaScript code for handling form submission
@@ -74,6 +82,28 @@
                 };
                 xhr.send();
             });
+            });
+
+            // JavaScript code for the popup
+            const myButton = document.getElementById("myButton");
+            const modal = document.getElementById("myModal");
+            const closeBtn = document.getElementsByClassName("close")[0];
+
+            myButton.addEventListener("click", function () {
+                // Show the modal when the button is clicked
+                modal.style.display = "block";
+            });
+
+            closeBtn.addEventListener("click", function () {
+                // Close the modal when the close button is clicked
+                modal.style.display = "none";
+            });
+
+            window.addEventListener("click", function (event) {
+                // Close the modal if the user clicks outside the modal content
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
             });
         </script>
     </body>
