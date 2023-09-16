@@ -108,4 +108,5 @@ label {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
 }
