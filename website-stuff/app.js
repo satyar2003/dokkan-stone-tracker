@@ -35,8 +35,8 @@ app.post('/process', (req, res) => {
     // const formattedDate = inputDate.toLocaleDateString();
 
     const currentTime = new Date(currentDate.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
-    if (currentTime.getHours() < 17) {
-        daysDifference += 1;
+    if (currentTime.getHours() > 17) {
+        daysDifference -= 1;
     }
 
     const formattedOutput = format(userStones, daysDifference, weekend(inputDate));
