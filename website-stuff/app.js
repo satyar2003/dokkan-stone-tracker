@@ -30,13 +30,13 @@ app.post('/process', (req, res) => {
     const inputDate = new Date(userDateTime);
     const currentDate = new Date();
     const timeDifference = inputDate.getTime() - currentDate.getTime();
-    let daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+    let daysDifference = Math.round(timeDifference / (1000 * 60 * 60 * 24));
 
     // const formattedDate = inputDate.toLocaleDateString();
 
     const currentTime = new Date(currentDate.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
-    if (currentTime.getHours() > 17) {
-        daysDifference -= 1;
+    if (currentTime.getHours() < 17) {
+        daysDifference += 1;
     }
 
     const formattedOutput = format(userStones, daysDifference, weekend(inputDate));
