@@ -134,7 +134,8 @@ int main() {
         cout << "(6) Remove an event" << endl;
         cout << "(7) Update an event" << endl;
         cout << "(8) Generate text file with total stones" << endl;
-        cout << "(9) Exit the program" << endl;
+        cout << "(9) Remove all completed events" << endl;
+        cout << "(10) Exit the program" << endl;
         cout << "Choose an option: ";
         cin >> choice;
         b = true;
@@ -149,7 +150,8 @@ int main() {
             s += "(6) Remove an event\n";
             s += "(7) Update an event\n";
             s += "(8) Generate text file with total stones\n";
-            s += "(9) Exit the program\n";
+            s += "(9) Remove all completed events\n";
+            s += "(10) Exit the program\n";
             s += "Choose an option: ";
             clearIncorrectInput(cin, s);
             cin >> choice;
@@ -271,6 +273,14 @@ int main() {
             }
             break;
         case 9:
+            for (int i = 0; i < eventList.size(); ++i) {
+                if(eventList.at(i).getStoneCount() == 0) {
+                    eventList.erase(eventList.begin() + i);
+                    --i;
+                }
+            }
+            break;
+        case 10:
             choice = 0;
             break;
         default:
