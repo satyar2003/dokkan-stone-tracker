@@ -31,7 +31,6 @@ app.post('/process', (req, res) => {
     const currentDate = new Date();
     const timeDifference = inputDate.getTime() - currentDate.getTime();
     let daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-    console.log(daysDifference);
 
     // const formattedDate = inputDate.toLocaleDateString();
 
